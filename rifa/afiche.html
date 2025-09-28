@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Benéfica para Emily Aguilar Sánchez</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset y variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+        
+        :root {
+            --primary: #25D366;
+            --primary-dark: #128C7E;
+            --accent: #FF6B6B;
+            --light: #f8f9fa;
+            --dark: #2d3748;
+            --gray: #718096;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+        }
+        
+        body {
+            background-color: #f7fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path fill="white" d="M30,30 Q50,10 70,30 T90,30 T70,70 T30,70 T10,30 T30,30 Z"/></svg>');
+            background-size: 200px;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Contenido principal */
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            flex: 1;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .section-title i {
+            margin-right: 0.75rem;
+            font-size: 1.3rem;
+        }
+        
+        /* Sección de Emily */
+        .emily-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+        }
+        
+        .photo-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 4rem;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .emily-text {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        .highlight {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        /* Información de la rifa */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .info-item {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        
+        .info-item strong {
+            display: block;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Premios */
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .prize-card {
+            background: linear-gradient(to bottom, white, #f7fafc);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .prize-title {
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .prize-title i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .prize-card ul {
+            list-style-type: none;
+        }
+        
+        .prize-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .prize-card li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Contacto */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-card {
+            background: linear-gradient(to bottom, white, #f7fafc);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .contact-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .phone-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0.75rem 0;
+            letter-spacing: 1px;
+        }
+        
+        .sinpe-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 0.75rem 0;
+            letter-spacing: 1px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            width: 100%;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        /* Patrocinadores */
+        .sponsors-section {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .sponsors-title {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .sponsors-banner {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .sponsor-logo {
+            height: 100px;
+            background: var(--light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 1.2rem;
+            border: 1px dashed var(--border);
+        }
+        
+        .sponsor-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            margin-top: auto;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+        }
+        
+        .heart {
+            color: var(--accent);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .photo-placeholder {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+            
+            .info-grid, .prizes-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Rifa Benéfica para Emily Aguilar Sánchez</h1>
+            <p class="subtitle">Tu ayuda puede hacer la diferencia. Participa y apoya esta noble causa.</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Sección de Emily -->
+        <section class="card">
+            <h2 class="section-title">
+                <i class="fas fa-heart"></i> Conoce a Emily
+            </h2>
+            <div class="emily-section">
+                <div class="photo-placeholder">
+                    <!-- <i class="fas fa-child"></i> -->
+                    <!-- Para cargar una imagen, reemplaza el icono con: -->
+                    <img src="../src/Emily.jpg" alt="Emily Aguilar Sánchez">
+                </div>
+                <p class="emily-text">
+                    Esta rifa benéfica tiene como objetivo recaudar fondos para apoyar a <span class="highlight">Emily Aguilar Sánchez</span>. 
+                    Tu participación no solo te da la oportunidad de ganar fabulosos premios, sino que también contribuye a una causa noble.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Información de la rifa -->
+        <section class="card">
+            <h2 class="section-title">
+                <i class="fas fa-info-circle"></i> Información de la Rifa
+            </h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Fecha del Sorteo</strong>
+                    <p>Domingo 19 de Octubre</p>
+                    <p>Lotería Nacional</p>
+                </div>
+                <div class="info-item">
+                    <strong>Valor del Número</strong>
+                    <p>5,000 colones</p>
+                </div>
+                <div class="info-item">
+                    <strong>Modalidad de Pago</strong>
+                    <p>SINPE Móvil</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Premios -->
+        <section class="card">
+            <h2 class="section-title">
+                <i class="fas fa-gift"></i> Premios
+            </h2>
+            <div class="prizes-grid">
+                <div class="prize-card">
+                    <div class="prize-title">
+                        <i class="fas fa-trophy"></i> Primer Premio
+                    </div>
+                    <ul>
+                        <li>2 Noches en Hotel Guanacosta</li>
+                        <li>1 Set de Uñas en Aury Nails</li>
+                    </ul>
+                </div>
+                
+                <div class="prize-card">
+                    <div class="prize-title">
+                        <i class="fas fa-medal"></i> Segundo Premio
+                    </div>
+                    <ul>
+                        <li>Orden de compra por 25,000 colones en Tienda Variedades</li>
+                        <li>Cambio de aceite 20/50 motor gasolina, 4 cilindros en el Taller de Boro</li>
+                    </ul>
+                </div>
+                
+                <div class="prize-card">
+                    <div class="prize-title">
+                        <i class="fas fa-award"></i> Tercer Premio
+                    </div>
+                    <ul>
+                        <li>Orden de compra por 25,000 colones en Tienda Collection & Más</li>
+                        <li>Masaje relajante de Vale</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contacto -->
+        <section class="card">
+            <h2 class="section-title">
+                <i class="fas fa-phone-alt"></i> Contacto y Pago
+            </h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Solicita tu número</h3>
+                    <div class="phone-number">8374-0741</div>
+                    <a href="https://wa.me/50683740741?text=https://emily.innocr.com/rifa/afiche.html%0ARifa%20Benéfica%20para%20Emily%20%0AMe%20interesan%20los%20siguientes%20números:%20" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                    </a>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Realiza el pago por SINPE</h3>
+                    <div class="sinpe-number">8967-4852</div>
+                    <p>A nombre de: Cindy Sánchez Arguello</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Patrocinadores -->
+        <section class="sponsors-section">
+            <h2 class="sponsors-title">Nuestros Patrocinadores</h2>
+            <div class="sponsors-banner">
+                <div class="sponsors-grid">
+                    <div class="sponsor-logo">
+                        <img src="../src/patrocinadores/Guanacosta.jpg" alt="Guanacosta">
+                    </div>
+                    <div class="sponsor-logo">
+                        <img src="../src/patrocinadores/AuryNails.jpg" alt="Aury Nails">
+                    </div>
+                    <div class="sponsor-logo">
+                        <img src="../src/patrocinadores/TiendaVariedadesCañas.jpg" alt="Tienda Variedades Cañas">
+                    </div>
+                    <div class="sponsor-logo">
+                        <img src="../src/patrocinadores/TallerRoRo.jpg" alt="Taller Ro Ro">
+                    </div>
+                    <div class="sponsor-logo">
+                        <img src="../src/patrocinadores/Collection.jpg" alt="Collection">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>¡Gracias por tu apoyo! <span class="heart">❤</span></p>
+    </footer>
+
+    <script>
+        // Efectos de animación al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Cuenta regresiva hasta la fecha del sorteo
+            function updateCountdown() {
+                const currentYear = new Date().getFullYear();
+                const sorteoDate = new Date(`October 19, ${currentYear} 19:00:00`).getTime();
+                const now = new Date().getTime();
+                const distance = sorteoDate - now;
+                
+                if (distance > 0) {
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    // Crear elemento de cuenta regresiva si no existe
+                    let countdownElement = document.getElementById('countdown');
+                    if (!countdownElement) {
+                        countdownElement = document.createElement('div');
+                        countdownElement.id = 'countdown';
+                        countdownElement.style.marginTop = '1rem';
+                        countdownElement.style.padding = '0.75rem';
+                        countdownElement.style.background = 'rgba(37, 211, 102, 0.1)';
+                        countdownElement.style.borderRadius = '8px';
+                        countdownElement.style.fontWeight = '600';
+                        countdownElement.style.color = 'var(--primary-dark)';
+                        
+                        const infoSection = document.querySelector('.info-grid').parentNode;
+                        infoSection.appendChild(countdownElement);
+                    }
+                    
+                    countdownElement.innerHTML = 
+                        `Faltan: <span style="font-size: 1.1rem;">${days} días, ${hours} horas y ${minutes} minutos</span> para el sorteo`;
+                } else {
+                    // El sorteo ya pasó
+                    const countdownElement = document.getElementById('countdown');
+                    if (countdownElement) {
+                        countdownElement.innerHTML = "¡El sorteo ya se realizó! Gracias a todos por participar.";
+                    }
+                }
+            }
+            
+            // Actualizar cada minuto
+            setInterval(updateCountdown, 60000);
+            updateCountdown(); // Llamada inicial
+        });
+    </script>
+</body>
+</html>

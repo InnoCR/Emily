@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa Benéfica para Emily</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .whatsapp-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: #128C7E;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .countdown {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .link-preview {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .link-preview {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="whatsapp-icon">📱</div>
+        <h1>Rifa Benéfica para Emily</h1>
+        <p>Estás a punto de ser redirigido a WhatsApp para obtener más información sobre los números disponibles para la rifa benéfica.</p>
+        
+        <div class="link-preview">
+            <strong>Mensaje que se enviará:</strong><br>
+            Rifa Benéfica para Emily<br>
+            Me interesan los siguientes números:
+        </div>
+        
+        <p>Si la redirección no funciona automáticamente, haz clic en el botón de abajo.</p>
+        
+        <a href="https://wa.me/50683740741?text=https://emily.innocr.com/Rifa/afiche.html%0ARifa%20Benéfica%20para%20Emily%20%0AMe%20interesan%20los%20siguientes%20números:%20" class="btn" id="whatsappBtn">
+            Abrir WhatsApp
+        </a>
+        
+        <div class="countdown" id="countdown">Redirigiendo en 5 segundos...</div>
+    </div>
+
+    <script>
+        // Redirección automática después de 5 segundos
+        let seconds = 5;
+        const countdownElement = document.getElementById('countdown');
+        const countdownInterval = setInterval(() => {
+            seconds--;
+            countdownElement.textContent = `Redirigiendo en ${seconds} segundos...`;
+            
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = "https://wa.me/50683740741?text=https://emily.innocr.com/rifa/afiche.html%0ARifa%20Benéfica%20para%20Emily%20%0AMe%20interesan%20los%20siguientes%20números:%20";
+            }
+        }, 1000);
+        
+        // Redirección inmediata si el usuario hace clic en el botón
+        document.getElementById('whatsappBtn').addEventListener('click', function() {
+            clearInterval(countdownInterval);
+        });
+    </script>
+</body>
+</html>
